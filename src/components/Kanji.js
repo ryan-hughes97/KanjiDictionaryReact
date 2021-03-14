@@ -14,11 +14,19 @@ const Kanji = ({ kanjiChara }) => {
   console.log(kanjiData);
 
   return (
-    <StyledKanjiCard onClick={kanjiDataHandler}>
+    <StyledKanjiCard initial='hidden' animate='show' onClick={kanjiDataHandler}>
       <h1>{kanjiChara}</h1>
-      <div className='kanji-meanings'>
+      <div
+        className={kanjiData ? 'kanji-meanings show' : 'kanji-meanings hide'}
+        id='kanji-meaning'
+      >
         {kanjiData
-          ? kanjiData.map((meaning) => <p key={meaning}>{meaning}</p>)
+          ? kanjiData.map((meaning, index) => (
+              <nobr key={meaning} style={{ whiteSpace: 'pre-wrap' }}>
+                {index ? ', ' : ''}
+                {meaning}
+              </nobr>
+            ))
           : ''}
       </div>
     </StyledKanjiCard>
@@ -30,28 +38,26 @@ const StyledKanjiCard = styled(motion.div)`
   width: 200px;
   height: 200px;
   border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
   /* position: relative; */
   h1 {
     font-size: 4rem;
-    padding: 0;
     margin: 0;
+    padding: 0;
     text-align: center;
   }
   .kanji-meanings {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: flex-end;
-    padding: 1rem;
-    p {
-      background: #ccc;
-      width: 75px;
-      margin: 0.3rem 0.3rem;
-      text-align: center;
-      border-radius: 10px;
-    }
+    padding: 0 1rem;
+  }
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
   }
 `;
 

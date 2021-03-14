@@ -1,10 +1,12 @@
-import KanjiList from './components/KanjiList';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className='App'>
-      <h1>Kanji Dictionary</h1>
-      <KanjiList />
+      <h1 style={{ textAlign: 'center', fontSize: '3rem' }}>
+        Kanji Dictionary
+      </h1>
+      <Home />
     </div>
   );
 }

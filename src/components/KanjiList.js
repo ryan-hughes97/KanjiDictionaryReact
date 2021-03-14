@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Kanji from './Kanji';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const KanjiList = () => {
-  const [kanji, setKanji] = useState([]);
-  useEffect(() => {
-    axios
-      .get('https://kanjiapi.dev/v1/kanji/grade-1')
-      .then((data) => {
-        setKanji(data.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
+const KanjiList = ({ kanji, setKanji, kanjiGrade }) => {
   return (
     <StyledKanjiList>
       {kanji.map((data) => (

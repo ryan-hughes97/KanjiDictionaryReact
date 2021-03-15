@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
 const Kanji = ({ kanjiChara }) => {
+  const [activeState, setActiveState] = useState(false);
   const [kanjiData, setKanjiData] = useState('');
   const kanjiDataHandler = () => {
     axios
       .get(`https://kanjiapi.dev/v1/kanji/${kanjiChara}`)
       .then((data) => setKanjiData(data.data.meanings))
       .catch((err) => console.log(err));
+    setActiveState(!activeState);
   };
   console.log(kanjiData);
 
   return (
     <StyledKanjiCard initial='hidden' animate='show' onClick={kanjiDataHandler}>
       <h1>{kanjiChara}</h1>
-      <div
-        className={kanjiData ? 'kanji-meanings show' : 'kanji-meanings hide'}
-        id='kanji-meaning'
-      >
+      <div className={activeState ? 'kanji-meanings show' : 'kanji-meanings'}>
         {kanjiData
           ? kanjiData.map((meaning, index) => (
               <nobr key={meaning} style={{ whiteSpace: 'pre-wrap' }}>
@@ -52,12 +51,10 @@ const StyledKanjiCard = styled(motion.div)`
   }
   .kanji-meanings {
     padding: 0 1rem;
+    display: none;
   }
   .show {
     display: block;
-  }
-  .hide {
-    display: none;
   }
 `;
 

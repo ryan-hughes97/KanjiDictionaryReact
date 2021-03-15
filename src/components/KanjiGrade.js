@@ -2,13 +2,13 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const KanjiGrade = ({ kanjiGrade, setKanjiGrade }) => {
+  // Grade 7 does not exist on API
   const buttonEl1 = useRef(null);
   const buttonEl2 = useRef(null);
   const buttonEl3 = useRef(null);
   const buttonEl4 = useRef(null);
   const buttonEl5 = useRef(null);
   const buttonEl6 = useRef(null);
-  const buttonEl7 = useRef(null);
   const buttonEl8 = useRef(null);
 
   const kanjiGradeHandler1 = () => {
@@ -28,9 +28,6 @@ const KanjiGrade = ({ kanjiGrade, setKanjiGrade }) => {
   };
   const kanjiGradeHandler6 = () => {
     setKanjiGrade('6');
-  };
-  const kanjiGradeHandler7 = () => {
-    setKanjiGrade('7');
   };
   const kanjiGradeHandler8 = () => {
     setKanjiGrade('8');
@@ -70,11 +67,6 @@ const KanjiGrade = ({ kanjiGrade, setKanjiGrade }) => {
           </button>
         </li>
         <li>
-          <button ref={buttonEl7} onClick={kanjiGradeHandler7}>
-            7
-          </button>
-        </li>
-        <li>
           <button ref={buttonEl8} onClick={kanjiGradeHandler8}>
             8
           </button>
@@ -103,6 +95,7 @@ const StyledGrade = styled.div`
         border-radius: 50%;
         border: 0;
         outline: 0;
+        cursor: pointer;
       }
     }
   }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { fade, fadeMeaning } from '../animation';
+import { fade } from '../animation';
 
 const Kanji = ({ kanjiChara }) => {
   const [activeState, setActiveState] = useState(false);
@@ -14,7 +14,6 @@ const Kanji = ({ kanjiChara }) => {
       .catch((err) => console.log(err));
     setActiveState(!activeState);
   };
-  console.log(kanjiData);
 
   return (
     <StyledKanjiCard

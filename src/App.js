@@ -1,14 +1,21 @@
 import Home from './components/Home';
+import styled from 'styled-components';
 
 function App() {
   return (
     <div className='App'>
-      <h1 style={{ textAlign: 'center', fontSize: '3rem' }}>
-        Kanji Dictionary
-      </h1>
+      <StyledH1>Kanji Dictionary</StyledH1>
       <Home />
     </div>
   );
 }
+
+const StyledH1 = styled.h1`
+  text-align: center;
+  font-size: 3rem;
+  @media (max-width: 500px) {
+    font-size: 2.5rem;
+  }
+`;
 
 export default App;

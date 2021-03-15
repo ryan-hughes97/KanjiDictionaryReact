@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import KanjiList from './KanjiList';
 import KanjiGrade from './KanjiGrade';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const Home = () => {
   const [kanjiGrade, setKanjiGrade] = useState('1');
@@ -15,12 +16,18 @@ const Home = () => {
       .catch((err) => console.log(err));
   }, [kanjiGrade]);
   return (
-    <div>
+    <StyledHome>
       <KanjiGrade kanjiGrade={kanjiGrade} setKanjiGrade={setKanjiGrade} />
       <h1 style={{ textAlign: 'center' }}>Kanji Grade: {kanjiGrade}</h1>
       <KanjiList kanji={kanji} setKanji={setKanji} kanjiGrade={kanjiGrade} />
-    </div>
+    </StyledHome>
   );
 };
+
+const StyledHome = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default Home;

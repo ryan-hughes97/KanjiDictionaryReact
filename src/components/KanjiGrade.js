@@ -80,6 +80,9 @@ const StyledGrade = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  h1 {
+    margin-left: 1rem;
+  }
   ul {
     display: flex;
     li {
@@ -96,6 +99,49 @@ const StyledGrade = styled.div`
         border: 0;
         outline: 0;
         cursor: pointer;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    h1 {
+      margin-left: 0;
+    }
+    ul {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding-left: 0;
+      margin: 0;
+      li {
+        margin: 0.5rem;
+      }
+    }
+  }
+  @media (min-width: 501px) and (max-width: 650px) {
+    flex-direction: column;
+    h1 {
+      margin: 0;
+    }
+    ul {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding-left: 0;
+      margin: 0;
+      li {
+        margin: 0.5rem;
+      }
+    }
+  }
+  @media (min-width: 651px) and (max-width: 900px) {
+    flex-direction: column;
+    h1 {
+      margin: 0;
+    }
+    ul {
+      padding-left: 0;
+      /* margin: 0; */
+      li {
+        margin: 0.5rem;
       }
     }
   }

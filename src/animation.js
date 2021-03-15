@@ -9,14 +9,3 @@ export const fade = {
     },
   },
 };
-
-export const fadeMeaning = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      ease: 'easeIn',
-      duration: 0.3,
-    },
-  },
-};

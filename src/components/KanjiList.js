@@ -20,6 +20,15 @@ const StyledKanjiList = styled(motion.div)`
   margin: auto;
   justify-content: center;
   align-items: center;
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media (min-width: 501px) and (max-width: 650px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 651px) and (max-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export default KanjiList;

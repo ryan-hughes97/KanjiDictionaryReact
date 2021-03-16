@@ -3,7 +3,7 @@ import Kanji from './Kanji';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const KanjiList = ({ kanji, setKanji, kanjiGrade }) => {
+const KanjiList = ({ kanji }) => {
   return (
     <StyledKanjiList>
       {kanji.map((data) => (
@@ -15,6 +15,7 @@ const KanjiList = ({ kanji, setKanji, kanjiGrade }) => {
 
 const StyledKanjiList = styled(motion.div)`
   display: grid;
+  grid-gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
   max-width: 1000px;
   margin: auto;
@@ -23,10 +24,10 @@ const StyledKanjiList = styled(motion.div)`
   @media (max-width: 500px) {
     grid-template-columns: repeat(1, 1fr);
   }
-  @media (min-width: 501px) and (max-width: 650px) {
+  @media (min-width: 501px) and (max-width: 675px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (min-width: 651px) and (max-width: 900px) {
+  @media (min-width: 676px) and (max-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
   }
 `;

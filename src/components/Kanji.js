@@ -27,10 +27,7 @@ const Kanji = ({ kanjiChara }) => {
         {kanjiData &&
           (kanjiData
             ? kanjiData.map((meaning, index) => (
-                <motion.nobr
-                  // variants={fadeMeaning}
-                  // initial='hidden'
-                  // animate='show'
+                <nobr
                   key={meaning}
                   style={{
                     whiteSpace: 'pre-wrap',
@@ -38,7 +35,7 @@ const Kanji = ({ kanjiChara }) => {
                 >
                   {index ? ', ' : ''}
                   {meaning}
-                </motion.nobr>
+                </nobr>
               ))
             : '')}
       </div>
@@ -51,13 +48,12 @@ const StyledKanjiCard = styled(motion.div)`
   width: 200px;
   height: 200px;
   border-radius: 1rem;
+  border: 1px #d1d1d1 solid;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 1rem;
   cursor: pointer;
-  /* position: relative; */
   h1 {
     font-size: 4rem;
     margin: 0;

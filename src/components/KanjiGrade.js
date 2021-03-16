@@ -99,6 +99,10 @@ const StyledGrade = styled.div`
         border: 0;
         outline: 0;
         cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
   }
@@ -139,7 +143,6 @@ const StyledGrade = styled.div`
     }
     ul {
       padding-left: 0;
-      /* margin: 0; */
       li {
         margin: 0.5rem;
       }

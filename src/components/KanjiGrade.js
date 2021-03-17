@@ -32,6 +32,7 @@ const KanjiGrade = ({ kanjiGrade, setKanjiGrade }) => {
   const kanjiGradeHandler8 = () => {
     setKanjiGrade('8');
   };
+
   return (
     <StyledGrade>
       <h1>Choose a Grade:</h1>
@@ -82,6 +83,7 @@ const StyledGrade = styled.div`
   align-items: center;
   h1 {
     margin-left: 1rem;
+    margin-bottom: 3rem;
   }
   ul {
     display: flex;

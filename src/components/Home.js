@@ -52,6 +52,13 @@ const StyledHome = styled.div`
   button {
     margin-bottom: 1rem;
     cursor: pointer;
+    background: lightblue;
+    border: 0;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `;
 

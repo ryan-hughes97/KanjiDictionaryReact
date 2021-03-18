@@ -3,6 +3,8 @@ import KanjiList from './KanjiList';
 import KanjiGrade from './KanjiGrade';
 import axios from 'axios';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRandom } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
   let [kanji, setKanji] = useState([]);
@@ -39,7 +41,14 @@ const Home = () => {
         setKanji={setKanji}
       />
       <h1 style={{ textAlign: 'center' }}>Kanji Grade: {kanjiGrade}</h1>
-      <button onClick={randomizekanjiOrder}>Randomize Order</button>
+      <button onClick={randomizekanjiOrder}>
+        Shuffle
+        <FontAwesomeIcon
+          style={{ padding: '0 0 0 .5rem' }}
+          className='fa-icon'
+          icon={faRandom}
+        />
+      </button>
       <KanjiList kanji={kanji} setKanji={setKanji} kanjiGrade={kanjiGrade} />
     </StyledHome>
   );
@@ -50,6 +59,9 @@ const StyledHome = styled.div`
   flex-direction: column;
   align-items: center;
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 1rem;
     cursor: pointer;
     background: lightblue;

@@ -68,6 +68,7 @@ const StyledHome = styled.div`
     border: 0;
     border-radius: 1rem;
     padding: 0.75rem 1rem;
+    outline: 0;
     &:hover {
       transform: scale(1.05);
     }

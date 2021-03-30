@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function App() {
   return (
     <div className='App'>
-      <StyledH1>Kanji Flash Cards</StyledH1>
+      <StyledH1>Kanji Flashcards</StyledH1>
       <Home />
     </div>
   );

@@ -61,6 +61,12 @@ const StyledKanjiCard = styled(motion.div)`
   width: 200px;
   height: 200px;
   perspective: 600px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: pointer;
   .card {
     position: relative;

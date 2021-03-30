@@ -5,17 +5,13 @@ import axios from 'axios';
 import { fade } from '../animation';
 
 const Kanji = ({ kanjiChara }) => {
-  const [activeState, setActiveState] = useState(false);
   const [flipState, setFlipState] = useState(false);
-  const [kanjiCharaState, setKanjiCharaState] = useState(true);
   const [kanjiData, setKanjiData] = useState('');
   const kanjiDataHandler = () => {
     axios
       .get(`https://kanjiapi.dev/v1/kanji/${kanjiChara}`)
       .then((data) => setKanjiData(data.data.meanings))
       .catch((err) => console.log(err));
-    setActiveState(!activeState);
-    setKanjiCharaState(!kanjiCharaState);
     setFlipState(!flipState);
   };
 
@@ -26,16 +22,12 @@ const Kanji = ({ kanjiChara }) => {
       animate='show'
       onClick={kanjiDataHandler}
     >
-      <div className={flipState ? 'card is-flipped' : 'card'}>
+      <div className={flipState ? 'card isFlipped' : 'card'}>
         <div className='cardFace cardFaceFront'>
-          <h1 className={kanjiCharaState ? 'kanjiChara' : 'kanjiChara hide'}>
-            {kanjiChara}
-          </h1>
+          <h1>{kanjiChara}</h1>
         </div>
         <div className='cardFace cardFaceBack'>
-          <div
-            className={activeState ? 'kanji-meanings active' : 'kanji-meanings'}
-          >
+          <div className='kanjiMeanings'>
             {kanjiData &&
               (kanjiData
                 ? kanjiData.map((meaning, index) => (
@@ -96,7 +88,7 @@ const StyledKanjiCard = styled(motion.div)`
   .cardFaceBack {
     transform: rotateY(180deg);
   }
-  .card.is-flipped {
+  .card.isFlipped {
     transform: rotateY(180deg);
   }
   h1 {
@@ -105,27 +97,9 @@ const StyledKanjiCard = styled(motion.div)`
     padding: 0;
     text-align: center;
   }
-  .kanji-meanings {
+  .kanjiMeanings {
     font-size: 1.2rem;
     padding: 0 1rem;
-    display: none;
-    animation: showMeaning 0.5s ease-in;
-  }
-
-  .kanji-meanings.active {
-    display: block;
-  }
-  .kanjiChara.hide {
-    display: none;
-  }
-
-  @keyframes showMeaning {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opactiy: 1;
-    }
   }
 `;
 

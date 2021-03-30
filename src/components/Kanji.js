@@ -6,6 +6,8 @@ import { fade } from '../animation';
 
 const Kanji = ({ kanjiChara }) => {
   const [activeState, setActiveState] = useState(false);
+  const [flipState, setFlipState] = useState(false);
+  const [kanjiCharaState, setKanjiCharaState] = useState(true);
   const [kanjiData, setKanjiData] = useState('');
   const kanjiDataHandler = () => {
     axios
@@ -13,6 +15,8 @@ const Kanji = ({ kanjiChara }) => {
       .then((data) => setKanjiData(data.data.meanings))
       .catch((err) => console.log(err));
     setActiveState(!activeState);
+    setKanjiCharaState(!kanjiCharaState);
+    setFlipState(!flipState);
   };
 
   return (
@@ -22,38 +26,72 @@ const Kanji = ({ kanjiChara }) => {
       animate='show'
       onClick={kanjiDataHandler}
     >
-      <h1>{kanjiChara}</h1>
-      <div className={activeState ? 'kanji-meanings active' : 'kanji-meanings'}>
-        {kanjiData &&
-          (kanjiData
-            ? kanjiData.map((meaning, index) => (
-                <nobr
-                  key={meaning}
-                  style={{
-                    whiteSpace: 'pre-wrap',
-                  }}
-                >
-                  {index ? ', ' : ''}
-                  {meaning}
-                </nobr>
-              ))
-            : '')}
+      <div className={flipState ? 'card is-flipped' : 'card'}>
+        <div className='cardFace cardFaceFront'>
+          <h1 className={kanjiCharaState ? 'kanjiChara' : 'kanjiChara hide'}>
+            {kanjiChara}
+          </h1>
+        </div>
+        <div className='cardFace cardFaceBack'>
+          <div
+            className={activeState ? 'kanji-meanings active' : 'kanji-meanings'}
+          >
+            {kanjiData &&
+              (kanjiData
+                ? kanjiData.map((meaning, index) => (
+                    <nobr
+                      key={meaning}
+                      style={{
+                        whiteSpace: 'pre-wrap',
+                      }}
+                    >
+                      {index ? ', ' : ''}
+                      {meaning}
+                    </nobr>
+                  ))
+                : '')}
+          </div>
+        </div>
       </div>
     </StyledKanjiCard>
   );
 };
 
 const StyledKanjiCard = styled(motion.div)`
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   width: 200px;
   height: 200px;
-  border-radius: 1rem;
-  border: 1px #d1d1d1 solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  perspective: 600px;
   cursor: pointer;
+  .card {
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+  }
+  .cardFace {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  .cardFaceFront,
+  .cardFaceBack {
+    background: white;
+    border-radius: 1rem;
+    border: 1px #d1d1d1 solid;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .cardFaceBack {
+    transform: rotateY(180deg);
+  }
+  .card.is-flipped {
+    transform: rotateY(180deg);
+  }
   h1 {
     font-size: 4rem;
     margin: 0;
@@ -61,12 +99,17 @@ const StyledKanjiCard = styled(motion.div)`
     text-align: center;
   }
   .kanji-meanings {
+    font-size: 1.2rem;
     padding: 0 1rem;
     display: none;
-    animation: showMeaning 1s ease-in;
+    animation: showMeaning 0.5s ease-in;
   }
+
   .kanji-meanings.active {
     display: block;
+  }
+  .kanjiChara.hide {
+    display: none;
   }
 
   @keyframes showMeaning {
